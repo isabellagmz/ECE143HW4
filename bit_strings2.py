@@ -15,7 +15,7 @@ def map_bitstring(list_of_bits):
     the values are either 0 (when the bitstring has more 0s than
     1s) or 1 (when the bitsring has more 1s than 0s).
 
-    :param list_of_bits: input list of bits to be parsed
+    :param list_of_bits: input list of bits to be checked
     :return: dictionary with respective mappings
     '''
 
