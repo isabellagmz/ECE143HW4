@@ -1,5 +1,7 @@
 from bit_strings1 import get_sample
 from bit_strings2 import map_bitstring as map
+from bit_strings3 import gather_values as gather
+
 
 class Homework4:
     def __init__(self):
@@ -8,10 +10,6 @@ class Homework4:
 if __name__ == '__main__':
 
     my_Homework4 = Homework4()
-    # print(list(fibonacci(10)))
-    # num_days(2019,2)
-    # num_years(2000,2020)
-    # week(2020,2,29)
     # get_sample()
     list_given = ['100', '001', '111']
-    print(map(list_given))
+    # print(map(list_given))
