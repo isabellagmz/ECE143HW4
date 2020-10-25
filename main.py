@@ -13,5 +13,5 @@ if __name__ == '__main__':
     # num_years(2000,2020)
     # week(2020,2,29)
     # get_sample()
-    listy = ['100', '001', '111']
-    map(listy)
+    list_given = ['100', '001', '111']
+    print(map(list_given))
