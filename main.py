@@ -15,4 +15,5 @@ if __name__ == '__main__':
     # print(map(list_given))
     p = {'000': 0.125, '001': 0.125, '010': 0.125, '011': 0.125,
          '100': 0.125, '101': 0.125, '110': 0.125, '111': 0.125}
-    print(get_sample(prob=p))
+    # print(get_sample(prob=p,n=5))
+    print(gather(get_sample(prob=p,n=20)))
