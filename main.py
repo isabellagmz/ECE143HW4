@@ -1,6 +1,7 @@
 from bit_strings1 import get_sample
 from bit_strings2 import map_bitstring as map
 from bit_strings3 import gather_values as gather
+from bit_strings4 import threshold_values as threshold
 from coroutines import tracker
 
 class Homework4:
@@ -19,4 +20,5 @@ if __name__ == '__main__':
     samples = get_sample(prob=p,n=20)
     # print(samples)
     # print(gather(samples))
+    print(threshold(samples))
 

@@ -21,13 +21,61 @@ def threshold_values(seq,threshold=1):
     :param threshold: the number of keys whose value will remain 1
     :return: dictionary with keys and their 1s or 0s
     '''
+
     # check that seq has all str
     for bit in range(len(seq)):
-        assert type(bit) == str
+        assert type(seq[bit]) == str
 
     # check that the threshold is int
     assert type(threshold) == int
 
+    # Following 20 lines makes a bitstring dictionary
+    bitstring_map = {}  # will hold all the bits and their values
+
+    for entry in range(len(seq)):
+        to_test = seq[entry]  # stores entire entry
+        counter_1 = 0  # counts how many 1s
+        counter_0 = 0  # counts how many 0s
+
+        # will count how many 1s and 0s in individual entry
+        for bit in range(len(to_test)):
+            if to_test[bit] == '1':
+                counter_1 = counter_1 + 1
+            elif to_test[bit] == '0':
+                counter_0 = counter_0 + 1
+
+        # compares the number of 1s and 0s
+        if counter_0 > counter_1:  # strictly greater than 1
+            bitstring_map[to_test] = 0
+        elif counter_1 >= counter_0:
+            bitstring_map[to_test] = 1
+
+    map_dict = {}  # dictionary that will contain mapping
+
+    # dict of unique elements and their map
+    mapping_keys = list(bitstring_map.keys())
+    mapping_vals = list(bitstring_map.values())
+
+    repeated = 0  # how many times a bit is repeated
+
+    # check how many times an element in x is repeated
+    for element in range(len(mapping_keys)):
+        list_of_maps = []  # contains all 1s or all 0s
+        for i in range(len(seq)):
+            # add a 1 or 0 for everytime an element is repeated
+            if mapping_keys[element] == seq[i]:
+                list_of_maps.append(mapping_vals[element])
+        # after counting repetitions, add it to dictionary
+        map_dict[mapping_keys[element]] = list_of_maps
+
+    repeated_keys = list(map_dict.keys()) # list with all the keys
+    repeated_vals = list(map_dict.values()) # list with all the values
+
+    for val in range(len(repeated_vals)):
+        # makes 0s into 0
+        if repeated_vals[val][0] == 0:
+            map_dict[repeated_keys[val]] = 0
+        # make 1's into 1's if they are most repeated
 
 
-    return
+    return map_dict
