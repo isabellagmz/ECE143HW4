@@ -17,5 +17,6 @@ if __name__ == '__main__':
          '100': 0.125, '101': 0.125, '110': 0.125, '111': 0.125}
     # print(get_sample(prob=p,n=5))
     samples = get_sample(prob=p,n=20)
-    print(samples)
-    print(gather(samples))
+    # print(samples)
+    # print(gather(samples))
+
