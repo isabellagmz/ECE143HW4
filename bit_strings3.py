@@ -8,8 +8,7 @@
 # lists that contain the corresponding mapped values from
 # map_bitstring.
 
-from bit_strings2 import map_bitstring
-def gather_values(x):
+def gather_values(x, bitstring_map):
     '''
     This function takes in a list from get_sample and count how many
     elements are repeated in the sample and whether they have more
@@ -23,21 +22,23 @@ def gather_values(x):
     for bits in range(len(x)):
         assert type(x[bits]) == str
 
-    print(x)
+    # check bitstring_map is dict
+    assert type(bitstring_map) == dict
+
     map_dict = {} # dictionary that will contain mapping
 
     # dict of unique elements and their map
-    mapping_keys = list(map_bitstring(x).keys())
-    mapping_vals = list(map_bitstring(x).values())
+    mapping_keys = list(bitstring_map.keys())
+    mapping_vals = list(bitstring_map.values())
 
-    print(mapping_keys)
-    print(mapping_vals)
     # check how many times an element in x is repeated
     for element in range(len(mapping_keys)):
-        list_of_maps = []
+        list_of_maps = [] # contains all 1s or all 0s
         for i in range(len(x)):
+            # add a 1 or 0 for everytime an element is repeated
             if mapping_keys[element] == x[i]:
                 list_of_maps.append(mapping_vals[element])
+        # after counting repetitions, add it to dictionary
         map_dict[mapping_keys[element]] = list_of_maps
 
     return map_dict
