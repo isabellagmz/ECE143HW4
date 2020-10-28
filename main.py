@@ -1,7 +1,7 @@
 from bit_strings1 import get_sample
 from bit_strings2 import map_bitstring as map
 from bit_strings3 import gather_values as gather
-
+from coroutines import tracker
 
 class Homework4:
     def __init__(self):
@@ -17,5 +17,5 @@ if __name__ == '__main__':
          '100': 0.125, '101': 0.125, '110': 0.125, '111': 0.125}
     # print(get_sample(prob=p,n=5))
     samples = get_sample(prob=p,n=20)
-    bitstring_map = map(samples)
-    print(gather(samples,bitstring_map))
+    print(samples)
+    print(gather(samples))

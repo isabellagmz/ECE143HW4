@@ -6,3 +6,12 @@
 # and ultimately returns the number of odd numbered seconds
 # that have been iterated over.
 
+def tracker(p,limit):
+    '''
+    This is a genetator 
+
+    :param p:
+    :param limit:
+    :yield:
+    '''
+    yield
