@@ -3,6 +3,7 @@ from bit_strings2 import map_bitstring as map
 from bit_strings3 import gather_values as gather
 from bit_strings4 import threshold_values as threshold
 from coroutines import tracker
+from coroutines import producer
 
 class Homework4:
     def __init__(self):
@@ -20,5 +21,13 @@ if __name__ == '__main__':
     samples = get_sample(prob=p,n=20)
     # print(samples)
     # print(gather(samples))
-    print(threshold(samples))
+    # print(threshold(samples))
+
+    p = producer()
+    t = tracker(p, limit=3)
+    next(t)
+    #print(list(tracker(p,limit=5)))
+    #for i in range(5):
+        #print(list(tracker(p, 5)))
+    #print(next(p))
 
