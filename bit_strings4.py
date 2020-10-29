@@ -7,7 +7,7 @@
 # want to keep only those bitstrings with the two highest frequency
 # counts of the 1 value.
 
-def threshold_values(seq,threshold=2):
+def threshold_values(seq,threshold=1):
     '''
     This function will take a list of bits and check which ones have
     mostly 1s and which ones have mostly 0s. Then, it will return a
