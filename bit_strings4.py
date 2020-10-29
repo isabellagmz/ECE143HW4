@@ -7,7 +7,7 @@
 # want to keep only those bitstrings with the two highest frequency
 # counts of the 1 value.
 
-def threshold_values(seq,threshold=1):
+def threshold_values(seq,threshold=2):
     '''
     This function will take a list of bits and check which ones have
     mostly 1s and which ones have mostly 0s. Then, it will return a
@@ -82,15 +82,34 @@ def threshold_values(seq,threshold=1):
         # store the ones into a new dictionary
         for i in range(len(repeated_keys)):
             if repeated_vals[val][0] == 1:
-                repeated_ones_dict[repeated_keys[val]] = repeated_vals[val]
+                repeated_ones_dict[repeated_keys[val]] = len(repeated_vals[val])
 
-    # finding the most repeated ones
+    # sort the dictionary from smallest to biggest
+    sorted_dict_by_key = {}
+    sorted_dict_by_value = {}
+
     repeated_ones_keys = list(repeated_ones_dict.keys())
-    repeated_ones_vals = list(repeated_ones_dict.values())
+    #repeated_ones_keys.sort()
+    #print(repeated_ones_keys)
+
+    '''for key in sorted(repeated_ones_dict.keys()):
+        sorted_dict_by_key[key]=repeated_ones_dict[key]
+    sorted_keys = list(sorted_dict_by_key.values())
+    sorted_keys.sort(reverse=True)
+    print(sorted_dict_by_key)
+    print(sorted_keys)'''
+
+    sorted_dict_by_value = sorted(repeated_ones_dict.items(), key=lambda x: x[1], reverse=True)
+    print(sorted_dict_by_value)
+
+    # change to 1 if threshold is bigger than possible 1s
+    if threshold >= len(sorted_dict_by_value):
+        for key in range(len(sorted_dict_by_value)):
+            map_dict[sorted_dict_by_value[key][0]] = 1
 
     while threshold != 0:
-        
+        for key in range(len(sorted_dict_by_value)):
+            map_dict[sorted_dict_by_value[key][0]] = 1
         threshold = threshold - 1
 
-    print(repeated_ones_dict)
     return map_dict
