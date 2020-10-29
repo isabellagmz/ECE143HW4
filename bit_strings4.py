@@ -28,6 +28,7 @@ def threshold_values(seq,threshold=1):
 
     # check that the threshold is int
     assert type(threshold) == int
+    assert threshold != 0
 
     # Following 20 lines makes a bitstring dictionary
     bitstring_map = {}  # will hold all the bits and their values
@@ -71,11 +72,25 @@ def threshold_values(seq,threshold=1):
     repeated_keys = list(map_dict.keys()) # list with all the keys
     repeated_vals = list(map_dict.values()) # list with all the values
 
+    # will have list of longest length
+    repeated_ones_dict = {}
+
     for val in range(len(repeated_vals)):
         # makes 0s into 0
         if repeated_vals[val][0] == 0:
             map_dict[repeated_keys[val]] = 0
-        # make 1's into 1's if they are most repeated
+        # store the ones into a new dictionary
+        for i in range(len(repeated_keys)):
+            if repeated_vals[val][0] == 1:
+                repeated_ones_dict[repeated_keys[val]] = repeated_vals[val]
 
+    # finding the most repeated ones
+    repeated_ones_keys = list(repeated_ones_dict.keys())
+    repeated_ones_vals = list(repeated_ones_dict.values())
 
+    while threshold != 0:
+        
+        threshold = threshold - 1
+
+    print(repeated_ones_dict)
     return map_dict
