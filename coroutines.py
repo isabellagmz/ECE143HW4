@@ -35,13 +35,19 @@ def tracker(p,limit):
     # check that limit is an int
     assert type(limit) == int
 
+    # check that sent line is an int
+    i = 0
+    line = (yield i)
+    if line is not None:
+        assert type(line) == int
+        # use line sent instead
+        limit = line
+
     # to call producer
     p = producer()
 
+    count = 0 # counter variable
     # call producer until we reach the limit
-    ellapsed_seconds = 0
-    count = 0
-
     while count != limit:
         ellapsed_seconds = math.floor(next(p).total_seconds())
         if ellapsed_seconds % 2 == 0:

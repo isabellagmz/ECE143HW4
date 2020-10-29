@@ -25,8 +25,10 @@ if __name__ == '__main__':
 
     p = producer()
     t = tracker(p, limit=3)
-    next(t)
-    #print(list(tracker(p,limit=5)))
+    print(next(t))
+    print(t.send(5))
+    print(next(t))
+    print(list(t))
     #for i in range(5):
         #print(list(tracker(p, 5)))
     #print(next(p))
