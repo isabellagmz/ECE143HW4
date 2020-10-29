@@ -107,9 +107,13 @@ def threshold_values(seq,threshold=2):
         for key in range(len(sorted_dict_by_value)):
             map_dict[sorted_dict_by_value[key][0]] = 1
 
-    while threshold != 0:
-        for key in range(len(sorted_dict_by_value)):
-            map_dict[sorted_dict_by_value[key][0]] = 1
+    for key in range(len(sorted_dict_by_value)):
+        map_dict[sorted_dict_by_value[key][0]] = 1
         threshold = threshold - 1
+        if threshold == 0:
+            for i in range(key+1,len(sorted_dict_by_value)):
+                map_dict[sorted_dict_by_value[i][0]] = 0
+            break
+
 
     return map_dict
