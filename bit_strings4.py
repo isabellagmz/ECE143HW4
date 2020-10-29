@@ -85,19 +85,7 @@ def threshold_values(seq,threshold=2):
                 repeated_ones_dict[repeated_keys[val]] = len(repeated_vals[val])
 
     # sort the dictionary from smallest to biggest
-    sorted_dict_by_key = {}
     sorted_dict_by_value = {}
-
-    repeated_ones_keys = list(repeated_ones_dict.keys())
-    #repeated_ones_keys.sort()
-    #print(repeated_ones_keys)
-
-    '''for key in sorted(repeated_ones_dict.keys()):
-        sorted_dict_by_key[key]=repeated_ones_dict[key]
-    sorted_keys = list(sorted_dict_by_key.values())
-    sorted_keys.sort(reverse=True)
-    print(sorted_dict_by_key)
-    print(sorted_keys)'''
 
     sorted_dict_by_value = sorted(repeated_ones_dict.items(), key=lambda x: x[1], reverse=True)
     print(sorted_dict_by_value)
@@ -108,12 +96,25 @@ def threshold_values(seq,threshold=2):
             map_dict[sorted_dict_by_value[key][0]] = 1
 
     for key in range(len(sorted_dict_by_value)):
-        map_dict[sorted_dict_by_value[key][0]] = 1
-        threshold = threshold - 1
+        # check if they are repeated equal amount of times
+        if key + 1 < len(sorted_dict_by_value):
+            if sorted_dict_by_value[key][-1] != sorted_dict_by_value[key+1][-1]:
+                # change their values to one
+                map_dict[sorted_dict_by_value[key][0]] = 1
+                threshold = threshold - 1
+            elif sorted_dict_by_value[key][0] < sorted_dict_by_value[key+1][0]:
+                # change values to one if they are the smallest
+                map_dict[sorted_dict_by_value[key][0]] = 1
+                threshold = threshold - 1
+            elif threshold != 0:
+                map_dict[sorted_dict_by_value[key][0]] = 1
+                threshold = threshold - 1
+        # don't change anymore if threshold amount is met
         if threshold == 0:
-            for i in range(key+1,len(sorted_dict_by_value)):
-                map_dict[sorted_dict_by_value[i][0]] = 0
+            # change the rest to zeros
+            for i in range(len(sorted_dict_by_value)):
+                if type(map_dict[sorted_dict_by_value[i][0]]) == list:
+                    map_dict[sorted_dict_by_value[i][0]] = 0
             break
-
 
     return map_dict
